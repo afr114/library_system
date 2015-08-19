@@ -39,4 +39,9 @@ describe(Book) do
       expect(Book.all()).to(eq([]))
     end
   end
+
+  describe(".find") do
+    it('returns a book by its ID') do
+      test_book1 = ({:title => })
+
 end #end spec
