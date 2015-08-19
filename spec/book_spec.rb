@@ -1,8 +1,4 @@
-require ('rspec')
-require('book')
-require('pg')
-
-DB = PG.connect({:dbname => "library_system_test"})
+require('spec_helper')
 
 describe(Book) do
   describe('#title') do
@@ -15,6 +11,14 @@ describe(Book) do
   describe('.all') do
     it ('is empty at first') do
       expect(Book.all()).to(eq([]))
+    end
+  end
+
+  describe('#save') do
+    it ('lets you save to the database') do
+      test_book = Book.new({:title => "Harry Potter and the muggle mortgage crisis", :author => "J.K. Meowling", :id => 1})
+      test_book.save()
+      expect(Book.all()).to(eq([test_book]))
     end
   end
 end #end spec
