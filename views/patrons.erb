@@ -1,0 +1,20 @@
+<center>
+  <h1>The Library Book's Page</h1>
+  <h4>View the currently available books at the library or see what books you currently have checked out</h4>
+</center>
+
+<b><u>Available books:</u><b>
+  <% if @books.any? %>
+  <ol>
+    <% @books.each() do |book| %>
+    <li><b><%= book.title() %><br>By</b> <%= book.author() %></li>
+    <% end %>
+  </ol>
+
+  <% else %>
+  <p>There are currently no books available at the library.</p>
+  <% end %>
+
+  <br>
+
+  

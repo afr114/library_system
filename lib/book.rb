@@ -4,7 +4,7 @@ class Book
   define_method(:initialize) do |attr|
     @title = attr.fetch(:title)
     @author = attr.fetch(:author)
-    @id = attr.fetch(:id)
+    @id = attr.fetch(:id, nil)
   end
 
   def self.all
@@ -37,6 +37,16 @@ class Book
 
   def delete
     DB.exec("DELETE FROM books WHERE id = #{self.id()};")
+  end
+
+  def self.find(id)
+    found_book = nil
+    Book.all().each() do |book|
+      if book.id().==(id)
+        found_book = book
+      end
+    end
+    found_book
   end
 
 

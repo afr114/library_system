@@ -1,0 +1,20 @@
+<center>
+  <h1>The Library Employee Page</h1>
+  <h4>View the currently available books or add more to the database</h4>
+</center>
+
+<b><u>Available books:</u><b>
+  <% if @books.any? %>
+  <ol>
+    <% @books.each() do |book| %>
+    <li><b><%= book.title() %><br>By</b> <%= book.author() %></li>
+    <% end %>
+  </ol>
+
+  <% else %>
+  <p>There are currently no books available at the library.</p>
+  <% end %>
+
+  <br>
+
+<a href='/books_form'>Click here to add a new book</a>
