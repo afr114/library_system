@@ -21,4 +21,22 @@ describe(Book) do
       expect(Book.all()).to(eq([test_book]))
     end
   end
+
+  describe('#update') do
+    it ("lets you update books in the database") do
+      book = Book.new({:title => "Harry Potter and the muggle mortgage crisis", :author => "J.K. Meowling", :id => nil})
+      book.save()
+      book.update({:title => "Harry Potter and the student loan emergency", :author => "J.K. Meowling"})
+      expect(book.title()).to(eq("Harry Potter and the student loan emergency"))
+    end
+  end
+
+  describe("#delete") do
+    it('deletes a book from the database') do
+      book = Book.new({:title => "Harry Potter and the muggle mortgage crisis", :author => "J.K. Meowling", :id => nil})
+      book.save()
+      book.delete()
+      expect(Book.all()).to(eq([]))
+    end
+  end
 end #end spec
