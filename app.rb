@@ -46,3 +46,18 @@ delete('/book/:id') do
   # @books = Book.all()
   redirect('/books')
 end
+
+get('/patrons') do
+  @books = Book.all()
+  erb(:patrons)
+end
+
+get('/patrons_form') do
+  erb(:patrons_form)
+end
+
+post('/patrons') do
+  patron = Patron.new({:name => params.fetch("name"), :phone => params.fetch("phone")})
+  patron.save()
+  redirect('/patrons')
+end

@@ -4,7 +4,7 @@ class Patron
   define_method(:initialize) do |attr|
     @name = attr.fetch(:name)
     @phone = attr.fetch(:phone)
-    @id = attr.fetch(:id)
+    @id = attr.fetch(:id, nil)
   end
 
   def self.all
@@ -32,7 +32,13 @@ class Patron
     @name = attr.fetch(:name)
     @phone = attr.fetch(:phone)
     @id = self.id()
-    DB.exec("UPDATE patrons SET name = '#{@name}', phone = '#{@phone}' WHERE id = #{@id};")
+    if @name != "" && @phone != ""
+      DB.exec("UPDATE patrons SET name = '#{@name}', phone = '#{@phone}' WHERE id = #{@id};")
+    elsif @phone != ""
+      DB.exec("UPDATE patrons SET phone = '#{@phone}' WHERE id = #{@id};")
+    else
+      DB.exec("UPDATE patrons SET name = '#{@name}' WHERE id = #{@id};")
+    end
   end
 
   def delete
