@@ -61,3 +61,8 @@ post('/patrons') do
   patron.save()
   redirect('/patrons')
 end
+
+get('/checkout/:id') do
+  @book = Book.find(params.fetch("id").to_i())
+  erb(:checkout)
+end
