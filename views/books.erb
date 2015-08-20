@@ -7,7 +7,7 @@
   <% if @books.any? %>
   <ol>
     <% @books.each() do |book| %>
-    <li><b><%= book.title() %><br>By</b> <%= book.author() %></li>
+    <li><b><a href="/book/<%= book.id() %>"><%= book.title() %></a><br></b></li>
     <% end %>
   </ol>
 
@@ -17,4 +17,5 @@
 
   <br>
 
-<a href='/books_form'>Click here to add a new book</a>
+<a href='/books_form'>Click here to add a new book</a><br>
+<a href='/'>Click here to return to the main Library page</a>

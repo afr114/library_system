@@ -32,7 +32,14 @@ class Book
     @title = attr.fetch(:title)
     @author = attr.fetch(:author)
     @id = self.id()
-    DB.exec("UPDATE books SET title = '#{@title}', author = '#{@author}' WHERE id = #{@id};")
+
+    if @title != "" && @author != ""
+      DB.exec("UPDATE books SET title = '#{@title}', author = '#{@author}' WHERE id = #{@id};")
+    elsif @author != "" 
+      DB.exec("UPDATE books SET author = '#{@author}' WHERE id = #{@id};")
+    else
+      DB.exec("UPDATE books SET title = '#{@title}' WHERE id = #{@id};")
+    end
   end
 
   def delete

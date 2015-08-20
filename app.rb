@@ -26,3 +26,23 @@ post('/books') do
   book.save()
   redirect('/books')
 end
+
+get('/book/:id') do
+  @book = Book.find(params.fetch("id").to_i())
+  erb(:book)
+end
+
+patch("/book/:id") do
+  title = params.fetch("title")
+  author = params.fetch("author")
+  @book = Book.find(params.fetch("id").to_i())
+  @book.update({:title => title, :author => author})
+  redirect('/books')
+end
+
+delete('/book/:id') do
+  @book = Book.find(params.fetch("id").to_i())
+  @book.delete()
+  # @books = Book.all()
+  redirect('/books')
+end
