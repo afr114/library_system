@@ -42,6 +42,11 @@ describe(Book) do
 
   describe(".find") do
     it('returns a book by its ID') do
-      test_book1 = ({:title => })
-
+      test_book1 = Book.new({:title => "Harry Potter and the muggle mortgage crisis", :author => "J.K. Meowling", :id => 1})
+      test_book1.save()
+      test_book2 = Book.new({:title => "Harry Potter and the student loan emergency", :author => "J.K. Meowling", :id => 2})
+      test_book2.save()
+      expect(Book.find(test_book2.id())).to(eq(test_book2))
+    end
+  end
 end #end spec

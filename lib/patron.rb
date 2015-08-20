@@ -39,5 +39,15 @@ class Patron
     DB.exec("DELETE FROM patrons WHERE id = #{self.id()};")
   end
 
+  def self.find(id)
+    found_patron = nil
+    Patron.all().each() do |patron|
+      if patron.id().==(id)
+        found_patron = patron
+      end
+    end
+    found_patron
+  end
+
 
 end # ends class
