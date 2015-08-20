@@ -5,8 +5,9 @@ require('./lib/patron')
 also_reload('lib/**/*.rb')
 require('pg')
 require('pry')
+require('launchy')
 
-DB = PG.connect({:dbname => "library_system"})
+DB = PG.connect({:dbname => "library_system_test"})
 
 get('/') do
   erb(:index)
