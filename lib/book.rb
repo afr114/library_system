@@ -25,7 +25,7 @@ class Book
   end
 
   def ==(another_book)
-    self.title().==(another_book.title()).&(self.id().==(another_book.id()))
+    self.title().==(another_book.title())
   end
 
   def update(attr)
@@ -35,7 +35,7 @@ class Book
 
     if @title != "" && @author != ""
       DB.exec("UPDATE books SET title = '#{@title}', author = '#{@author}' WHERE id = #{@id};")
-    elsif @author != "" 
+    elsif @author != ""
       DB.exec("UPDATE books SET author = '#{@author}' WHERE id = #{@id};")
     else
       DB.exec("UPDATE books SET title = '#{@title}' WHERE id = #{@id};")

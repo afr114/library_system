@@ -23,11 +23,35 @@ describe(Patron) do
   end
 
   describe('#update') do
-    it ("lets you update patrons in the database") do
+    it("lets you update patrons in the database") do
       patron = Patron.new({:name => "Hedwig", :phone => "5032228888", :id => nil})
       patron.save()
       patron.update({:name => "Hedwig Smith", :phone => "5032228888"})
       expect(patron.name()).to(eq("Hedwig Smith"))
+    end
+
+    it("lets you add a book to a patron") do
+      jose = Patron.new({:name => "Jose Jalapeno", :phone => "3124567896", :id => nil})
+      jose.save()
+      book1 = Book.new({:title => "The little Jalapeno",:author => "Rico Frederico", :id => nil})
+      book1.save()
+      book2 = Book.new({:title => "Taco Flavored Kisses", :author => "Jennifer Lopez", :id => nil})
+      book2.save()
+      jose.update({:books_id => [book1.id(), book2.id()]})
+      expect(jose.books()).to(eq([book1, book2]))
+    end
+  end
+
+  describe("#books") do
+    it("returns all the books for a patron") do
+      jose = Patron.new({:name => "Jose Jalapeno", :phone => "3124567896", :id => nil})
+      jose.save()
+      book1 = Book.new({:title => "The little Jalapeno",:author => "Rico Frederico", :id => nil})
+      book1.save()
+      book2 = Book.new({:title => "Taco Flavored Kisses", :author => "Jennifer Lopez", :id => nil})
+      book2.save()
+      jose.update({:books_id => [book1.id(), book2.id()]})
+      expect(jose.books()).to(eq([book1, book2]))
     end
   end
 
