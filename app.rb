@@ -60,7 +60,7 @@ end
 post('/patrons') do
   patron = Patron.new({:name => params.fetch("name"), :phone => params.fetch("phone")})
   patron.save()
-  redirect('/patrons')
+  erb(:success)
 end
 
 get('/checkout/:id') do
